@@ -19,7 +19,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch(`${store.apiUrl}/people/?page=1&limit=10`);
           const data = await response.json();
           if (response.ok) {
-            // Crear un array de promesas para obtener los detalles de cada personaje
             const detailedCharactersPromises = data.results.map(async (character) => {
               const charResponse = await fetch(character.url);
               const charData = await charResponse.json();
@@ -29,19 +28,13 @@ const getState = ({ getStore, getActions, setStore }) => {
                 throw new Error('Error fetching character details');
               }
             });
-
-            // Resolver todas las promesas en paralelo
             const detailedCharactersResults = await Promise.all(detailedCharactersPromises);
-
-            // Crear los objetos detailedCharacters y descriptionCharacters
             const detailedCharacters = {};
             const descriptionCharacters = {};
             detailedCharactersResults.forEach((char) => {
               detailedCharacters[char.uid] = char.details;
               descriptionCharacters[char.uid] = char.description;
             });
-
-            // Actualizar el store con los resultados
             setStore({ characterscards: data.results, detailedCharacters, descriptionCharacters });
             return true;
           }
@@ -59,7 +52,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           const response = await fetch(`${store.apiUrl}/starships/?page=2&limit=10`);
           const data = await response.json();
           if (response.ok) {
-            // Crear un array de promesas para obtener los detalles de cada nave
             const detailedStarshipsPromises = data.results.map(async (starship) => {
               const shipResponse = await fetch(starship.url);
               const shipData = await shipResponse.json();
@@ -69,17 +61,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                 throw new Error('Error fetching starship details');
               }
             });
-      
-            // Resolver todas las promesas en paralelo
             const detailedStarshipsResults = await Promise.all(detailedStarshipsPromises);
-      
-            // Crear el objeto detailedStarships
             const detailedStarships = {};
             detailedStarshipsResults.forEach((ship) => {
               detailedStarships[ship.uid] = ship.details;
             });
-      
-            // Actualizar el store con los resultados
             setStore({ starshipscards: data.results, detailedStarships });
             return true;
           }
