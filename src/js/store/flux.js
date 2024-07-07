@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         localStorage.setItem('favoriteStore', JSON.stringify(updateFavorites));
         console.log(`Item ${itemName} of favorites.`)
       },
-      
+
       deleteFavoriteItem: (itemName) => {
         const store = getStore();
         const updatedFavorites = store.favoriteStore.filter(fav => fav !== itemName);
@@ -123,18 +123,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(`Item ${itemName} removed from favorites.`)
       },
 
-      // favorite: (favoriteName) => {
-      //   const store = getStore();
-      //   if (store.favoriteStore.includes(favoriteName)) {
-      //     setStore({
-      //       favoriteStore: store.favoriteStore.filter(
-      //         (nameCharacter) => nameCharacter !== favoriteName
-      //       ),
-      //     });
-      //   } else {
-      //     setStore({ favoriteStore: [...store.favoriteStore, favoriteName] });
-      //   }
-      // },
     },
   };
 };
