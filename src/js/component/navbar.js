@@ -15,7 +15,7 @@ export const Navbar = () => {
             <div className="container-fluid d-flex">
                 <div className="container-fluid d-flex justify-content-between align-items-center">
                     <Link to="/">
-                        <img src={logoStarWars} alt="Star Wars" style={{ width: '120px' }} />
+                        <img className="logo" src={logoStarWars} alt="Star Wars"/>
                     </Link>
                     <div className="dropdown">
                         <button
@@ -26,11 +26,11 @@ export const Navbar = () => {
                         >
                             Favorites ({store.favoriteStore ? store.favoriteStore.length : 0})
                         </button>
-                        <ul className="dropdown-menu justify-content-between">
+                        <ul className="dropdown-menu">
                             {store.favoriteStore && store.favoriteStore.length > 0 ? (
                                 store.favoriteStore.map((item, index) => (
                                     <li key={index}>
-                                        <a className="dropdown-item">{item}</a><i class="fas fa-trash-alt"></i>
+                                        <a className="dropdown-item dropdownItem">{item}<i className="fas fa-trash-alt"></i></a>
                                     </li>
                                 ))
                             ) : (

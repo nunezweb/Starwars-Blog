@@ -21,3 +21,11 @@
     transform: translateY(2px) translateX(1px);
     box-shadow: 0 0 0 0 whitesmoke;
   }
+  .logo {
+    width: 120px;
+  }
+  .dropdownItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
