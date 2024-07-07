@@ -1,0 +1,23 @@
+.navbarButton {
+    background-color: transparent;
+    color: white;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 0.5em 2em;
+    margin-right: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid white;
+    box-shadow: 0 0 0 0 whitesmoke;
+  }
+  
+  .navbarButton:hover {
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 2px 5px 0 0 lightgray;
+  }
+  
+  .navbarButton:active {
+    transform: translateY(2px) translateX(1px);
+    box-shadow: 0 0 0 0 whitesmoke;
+  }
