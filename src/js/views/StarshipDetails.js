@@ -1,33 +1,94 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/details.css";
+import "../../styles/home.css";
 
 const StarshipDetails = () => {
+  const { store } = useContext(Context);
+  const [starshipDetails, setStarshipDetails] = useState(null);
+  const [starshipDescription, setStarshipDescription] = useState(null);
+  const [error, setError] = useState(false);
+  const params = useParams();
+
+  useEffect(() => {
+    const fetchStarshipDetails = async (uid) => {
+      try {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const response = await fetch(`${store.apiUrl}/starships/${uid}`);
+        const data = await response.json();
+        if (response.ok) {
+          setStarshipDetails(data.result.properties);
+          setStarshipDescription(data.result.description);
+          setError(false); // es false
+        } else {
+          console.error("Error fetching starship details:", data.message);
+          setError(true);
+        }
+      } catch (error) {
+        console.error("Error fetching starship details:", error);
+        setError(true);
+      }
+    };
+
+    if (params.uid) {
+      fetchStarshipDetails(params.uid);
+    }
+  }, [params.uid, store.apiUrl]);
+
+  if (error) {
+    return (
+      <div className="container text-center py-5 my-5">
+        <div className="row justify-content-center">
+          <div className="col-6r text-white">
+            <h1>Error loading data</h1>
+            <button
+              className="bookmarkBtn mt-3"
+              onClick={() => window.location.reload()}
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!starshipDetails) {
+    return (
+      <div className="container py-5 my-5">
+        <div className="row align-items-center">
+          <div className="spinnerContainer">
+            <div className="spinner"></div>
+            <div className="loader">
+              <p>loading</p>
+              <div className="words">
+                <span className="word">May the Force be with you.</span>
+                <span className="word">I've got a bad feeling about this</span>
+                <span className="word">Patience, young padawan.</span>
+                <span className="word">It's a trap.</span>
+                <span className="word">May the Force be with you</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="container my-5">
         <div className="row">
           <div className="col">
             <img
-              src="https://picsum.photos/800/600"
+              src={`https://starwars-visualguide.com/assets/img/starships/${params.uid}.jpg`}
               className="card-img-top"
-              alt="..."
+              alt="Star Wars"
             />
           </div>
           <div className="col d-flex flex-column justify-content-center align-items-center">
-            <h1>A-wing Fighter</h1>
-            <p>
-              With its sleek arrowhead shape, streamlined cockpit, and massive
-              twin engines, the A-wing starfighter suggests raw speed even when
-              parked within Alliance hangar bays. Faster than even the TIE
-              interceptor, the A-wing is well suited for lightning strikes. It
-              sports a pair of pivoting laser cannons on each wingtip. The
-              starfighters of Green Squadron, which flew in the Battle of Endor,
-              were made up of A-wing starfighters. The A-wing continued to
-              evolve, and was part of the Resistance’s starfighter corps during
-              its fight against the First Order
-            </p>
+            <h1 className="text-white">{starshipDetails.name}</h1>
+            <p className="text-white">{starshipDescription}</p>
           </div>
         </div>
       </div>
@@ -35,28 +96,28 @@ const StarshipDetails = () => {
         <hr className="separator-red" />
         <div className="row text-center text-danger">
           <div className="col-2">
-            <h2 className="fs-3">Name</h2>
-            <p className="fs-5">Luke</p>
+            <h2 className="fs-3">Model</h2>
+            <p className="fs-5">{starshipDetails.model}</p>
           </div>
           <div className="col-2">
-            <h2 className="fs-3">Birth Year</h2>
-            <p className="fs-5">35</p>
+            <h2 className="fs-3">Manufacturer</h2>
+            <p className="fs-5">{starshipDetails.manufacturer}</p>
           </div>
           <div className="col-2">
-            <h2 className="fs-3">Gender</h2>
-            <p className="fs-5">Male</p>
+            <h2 className="fs-3">Length</h2>
+            <p className="fs-5">{starshipDetails.length}</p>
           </div>
           <div className="col-2">
-            <h2 className="fs-3">Height</h2>
-            <p className="fs-5">10"</p>
+            <h2 className="fs-3">Passengers</h2>
+            <p className="fs-5">{starshipDetails.passengers}</p>
           </div>
           <div className="col-2">
-            <h2 className="fs-3">Skin Color</h2>
-            <p className="fs-5">Brown</p>
+            <h2 className="fs-3">Atmosphering Speed</h2>
+            <p className="fs-5">{starshipDetails.max_atmosphering_speed}</p>
           </div>
           <div className="col-2">
-            <h2 className=" fs-3">Eye Color</h2>
-            <p className="fs-5">Brown</p>
+            <h2 className="fs-3">Cargo Capacity</h2>
+            <p className="fs-5">{starshipDetails.cargo_capacity}</p>
           </div>
         </div>
       </div>

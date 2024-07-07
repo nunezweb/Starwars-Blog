@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import "../../styles/home.css";
 
 const CharacterCards = () => {
   const { store, actions } = useContext(Context);
-
-  const handleLearnMoreClick = (uid) => {
-    actions.getStoreClicUid(uid);
-  };
 
   return (
     <div className="d-flex overflow-auto">
@@ -34,7 +31,6 @@ const CharacterCards = () => {
                 <div className="d-flex justify-content-between">
                   <Link
                     to={`/characterdetails/${item.uid}`}
-                    onClick={() => handleLearnMoreClick(item.uid)}
                     className="mt-4 btn btn-outline-primary"
                   >
                     Learn more!
@@ -51,21 +47,18 @@ const CharacterCards = () => {
         })
       ) : (
         <div>
-          <div className="loader">
-            <p className="text">
-              <span className="letter letter1">L</span>
-              <span className="letter letter2">o</span>
-              <span className="letter letter3">a</span>
-              <span className="letter letter4">d</span>
-              <span className="letter letter5">i</span>
-              <span className="letter letter6">n</span>
-              <span className="letter letter7">g</span>
-              <span className="letter letter8">.</span>
-              <span className="letter letter9">.</span>
-              <span className="letter letter10">.</span>
-            </p>
+          <div class="cardStarWars">
+            <div class="loaderStarWars">
+              <p>loading</p>
+              <div class="wordsStarWars">
+                <span class="wordStarWars">May the Force be with you.</span>
+                <span class="wordStarWars">I've got a bad feeling about this</span>
+                <span class="wordStarWars">Patience, young padawan.</span>
+                <span class="wordStarWars">It's a trap.</span>
+                <span class="wordStarWars">May the Force be with you</span>
+              </div>
+            </div>
           </div>
-          <p className="text-white">No characters available</p>
         </div>
       )}
     </div>

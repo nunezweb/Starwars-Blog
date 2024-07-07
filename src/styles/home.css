@@ -186,76 +186,206 @@ body{
   }
   
   
-  /* Home Loading effect */
-  /* Wave text loader made by: csozi | Website: english.csozi.hu*/
-  
-  .text {
-    color: black;
-    font-weight: bolder;
+  /* Home First Loader effect */
+  .cardStarWars {
+    padding: 1rem 2rem;
+    border-radius: 1.25rem;
+  }
+  .loaderStarWars {
+    color: rgb(124, 124, 124);
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 40px;
+    padding: 10px 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 8px;
   }
   
-  @keyframes letter {
-    0% {
-      font-size: 30px;
+  .wordsStarWars {
+    overflow: hidden;
+    position: relative;
+  }
+  .wordsStarWars::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      var(--bg-color) 10%,
+      transparent 30%,
+      transparent 70%,
+      var(--bg-color) 90%
+      );
+      z-index: 20;
     }
-  
-    50% {
-      font-size: 40px;
+    
+    .wordStarWars {
+      display: block;
+      height: 100%;
+      padding-left: 6px;
+      color: #956afa;
+      animation: spin_4991 4s infinite;
     }
-  
-    100% {
-      font-size: 30px;
+    
+    @keyframes spin_4991 {
+      10% {
+        -webkit-transform: translateY(-102%);
+        transform: translateY(-102%);
+      }
+      
+      25% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%);
+      }
+      
+      35% {
+        -webkit-transform: translateY(-202%);
+        transform: translateY(-202%);
+      }
+      
+      50% {
+        -webkit-transform: translateY(-200%);
+        transform: translateY(-200%);
+      }
+      
+      60% {
+        -webkit-transform: translateY(-302%);
+        transform: translateY(-302%);
+      }
+      
+      75% {
+        -webkit-transform: translateY(-300%);
+        transform: translateY(-300%);
+      }
+      
+      85% {
+        -webkit-transform: translateY(-402%);
+        transform: translateY(-402%);
+      }
+      
+      100% {
+        -webkit-transform: translateY(-400%);
+        transform: translateY(-400%);
+      }
     }
+    
+    /* Home Second Loader effect */
+    .text-transparent {
+      color: rgba(255, 255, 255, 0); /* Cambia 0.5 por el nivel de transparencia deseado */
   }
-  
-  .letter {
-    animation: letter 1s infinite;
-  }
-  
-  .letter1 {
-    animation-delay: 0s;
-  }
-  
-  .letter2 {
-    animation-delay: -0.9s;
-  }
-  
-  .letter3 {
-    animation-delay: -0.8s;
-  }
-  
-  .letter4 {
-    animation-delay: -0.7s;
-  }
-  
-  .letter5 {
-    animation-delay: -0.6s;
-  }
-  
-  .letter6 {
-    animation-delay: -0.5s;
-  }
-  
-  .letter7 {
-    animation-delay: -0.4s;
-  }
-  
-  .letter8 {
-    animation-delay: -0.3s;
-  }
-  
-  .letter9 {
-    animation-delay: -0.2s;
-  }
-  
-  .letter10 {
-    animation-delay: -0.1s;
-  }
-
-
-  /* Error 404 */
-  .animate-charcter
-{
+    .three-body {
+      margin-left: 50px;
+      --uib-size: 35px;
+      --uib-speed: 0.8s;
+      --uib-color: #ffff;
+      position: relative;
+      display: inline-block;
+      height: var(--uib-size);
+      width: var(--uib-size);
+      animation: spin78236 calc(var(--uib-speed) * 2.5) infinite linear;
+     }
+     
+     .three-body__dot {
+      position: absolute;
+      height: 100%;
+      width: 30%;
+     }
+     
+     .three-body__dot:after {
+      content: '';
+      position: absolute;
+      height: 0%;
+      width: 100%;
+      padding-bottom: 100%;
+      background-color: var(--uib-color);
+      border-radius: 50%;
+     }
+     
+     .three-body__dot:nth-child(1) {
+      bottom: 5%;
+      left: 0;
+      transform: rotate(60deg);
+      transform-origin: 50% 85%;
+     }
+     
+     .three-body__dot:nth-child(1)::after {
+      bottom: 0;
+      left: 0;
+      animation: wobble1 var(--uib-speed) infinite ease-in-out;
+      animation-delay: calc(var(--uib-speed) * -0.3);
+     }
+     
+     .three-body__dot:nth-child(2) {
+      bottom: 5%;
+      right: 0;
+      transform: rotate(-60deg);
+      transform-origin: 50% 85%;
+     }
+     
+     .three-body__dot:nth-child(2)::after {
+      bottom: 0;
+      left: 0;
+      animation: wobble1 var(--uib-speed) infinite
+         calc(var(--uib-speed) * -0.15) ease-in-out;
+     }
+     
+     .three-body__dot:nth-child(3) {
+      bottom: -5%;
+      left: 0;
+      transform: translateX(116.666%);
+     }
+     
+     .three-body__dot:nth-child(3)::after {
+      top: 0;
+      left: 0;
+      animation: wobble2 var(--uib-speed) infinite ease-in-out;
+     }
+     
+     @keyframes spin78236 {
+      0% {
+       transform: rotate(0deg);
+      }
+     
+      100% {
+       transform: rotate(360deg);
+      }
+     }
+     
+     @keyframes wobble1 {
+      0%,
+       100% {
+       transform: translateY(0%) scale(1);
+       opacity: 1;
+      }
+     
+      50% {
+       transform: translateY(-66%) scale(0.65);
+       opacity: 0.8;
+      }
+     }
+     
+     @keyframes wobble2 {
+      0%,
+       100% {
+       transform: translateY(0%) scale(1);
+       opacity: 1;
+      }
+     
+      50% {
+       transform: translateY(66%) scale(0.65);
+       opacity: 0.8;
+      }
+     }
+     
+    
+    
+    /* Error 404 */
+    .animate-charcter
+    {
    text-transform: uppercase;
   background-image: linear-gradient(
     -225deg,

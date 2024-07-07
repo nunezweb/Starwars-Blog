@@ -24,12 +24,7 @@ export const Navbar = () => {
             >
               Favorites ({store.favoriteStore.length})
             </button>
-            {/* <button
-                            className="navbarButton btn btn-outline-secondary dropdown-toggle"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">Favorites</button> */}
-            <ul className="dropdown-menu">
+            <ul className="dropdown-menu dropdown-menu-end">
               {store.favoriteStore.length > 0 ? (
                 store.favoriteStore.map((item, index) => (
                   <li key={index}>
@@ -50,20 +45,6 @@ export const Navbar = () => {
                   <a className="dropdown-item">Empty</a>
                 </li>
               )}
-              {/* {store.favoriteStore && store.favoriteStore.length > 0 ? (
-                store.favoriteStore.map((item, index) => (
-                  <li key={index}>
-                    <a className="dropdown-item dropdownItem">
-                      {item}
-                      <i className="fas fa-trash-alt"></i>
-                    </a>
-                  </li>
-                ))
-              ) : (
-                <li>
-                  <a className="dropdown-item">Empty</a>
-                </li>
-              )} */}
             </ul>
           </div>
         </div>
