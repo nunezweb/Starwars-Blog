@@ -10,13 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       characterscards: [],
       starshipscards: [],
       favoriteStore: JSON.parse(localStorage.getItem('favoriteStore')) || [],
-      storeClicUid: null,
       apiUrl: "https://swapi.tech/api",
     },
     actions: {
-      getStoreClicUid: (uid) => {
-        setStore({ storeClicUid: uid });
-      },
       getCharactersCards: async () => {
         const store = getStore();
         try {
@@ -47,7 +43,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             // Actualizar el store con los resultados
             setStore({ characterscards: data.results, detailedCharacters, descriptionCharacters });
-            console.log("Contenido completo del store1:", getStore());
             return true;
           }
           setStore({ characterscards: [], detailedCharacters: {}, descriptionCharacters: {} });
@@ -112,7 +107,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const updateFavorites = [...store.favoriteStore, itemName];
         setStore({ favoriteStore: updateFavorites });
         localStorage.setItem('favoriteStore', JSON.stringify(updateFavorites));
-        console.log(`Item ${itemName} of favorites.`)
       },
 
       deleteFavoriteItem: (itemName) => {
@@ -120,7 +114,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const updatedFavorites = store.favoriteStore.filter(fav => fav !== itemName);
         setStore({ favoriteStore: updatedFavorites });
         localStorage.setItem('favoriteStore', JSON.stringify(updatedFavorites));
-        console.log(`Item ${itemName} removed from favorites.`)
       },
 
     },

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
@@ -6,17 +6,22 @@ import "../../styles/home.css";
 const CharacterCards = () => {
   const { store, actions } = useContext(Context);
 
+  useEffect(() => {
+    const startCharacters = () => {
+      actions.getCharactersCards();
+    };
+    startCharacters();
+    }, []);
+
   return (
     <div className="d-flex overflow-auto">
       {store.characterscards && store.characterscards.length > 0 ? (
         store.characterscards.map((item, index) => {
           const details = store.detailedCharacters[item.uid] || {};
-          console.log("Constante details:", store.gender);
           return (
             <div
               key={index}
-              className="card me-3"
-              style={{ minWidth: "300px" }}
+              className="card me-3 imgFlex"
             >
               <img
                 src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`}
@@ -36,9 +41,8 @@ const CharacterCards = () => {
                     Learn more!
                   </Link>
                   <i
-                    className="btn btn-outline-warning mt-4 far fa-heart"
+                    className="btn btn-outline-warning mt-4 far fa-heart iconFont"
                     onClick={() => actions.addFavoriteItem(item.name)}
-                    style={{ fontSize: "22px" }}
                   ></i>
                 </div>
               </div>
@@ -47,15 +51,15 @@ const CharacterCards = () => {
         })
       ) : (
         <div>
-          <div class="cardStarWars">
-            <div class="loaderStarWars">
+          <div className="cardStarWars">
+            <div className="loaderStarWars">
               <p>loading</p>
-              <div class="wordsStarWars">
-                <span class="wordStarWars">May the Force be with you.</span>
-                <span class="wordStarWars">I've got a bad feeling about this</span>
-                <span class="wordStarWars">Patience, young padawan.</span>
-                <span class="wordStarWars">It's a trap.</span>
-                <span class="wordStarWars">May the Force be with you</span>
+              <div className="wordsStarWars">
+                <span className="wordStarWars">May the Force be with you.</span>
+                <span className="wordStarWars">I've got a bad feeling about this</span>
+                <span className="wordStarWars">Patience, young padawan.</span>
+                <span className="wordStarWars">It's a trap.</span>
+                <span className="wordStarWars">May the Force be with you</span>
               </div>
             </div>
           </div>

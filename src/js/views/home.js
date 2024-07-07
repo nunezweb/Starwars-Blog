@@ -10,8 +10,7 @@ export const Home = () => (
       <div className="row justify-content-end">
         <div className="col-12">
           <div
-            className="d-flex overflow-auto mb-5"
-            style={{ maxWidth: "100%", whiteSpace: "nowrap" }}
+            className="d-flex overflow-auto mb-5 containersCss"
           >
             <CharacterCards />
           </div>{" "}
@@ -23,8 +22,7 @@ export const Home = () => (
       <div className="row justify-content-end">
         <div className="col-12">
           <div
-            className="d-flex overflow-auto mb-5"
-            style={{ maxWidth: "100%", whiteSpace: "nowrap" }}
+            className="d-flex overflow-auto mb-5 containersCss"
           >
             <StarshipsCards />
           </div>{" "}
