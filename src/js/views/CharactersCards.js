@@ -41,7 +41,7 @@ const CharacterCards = () => {
                   </Link>
                   <i
                     className="btn btn-outline-warning mt-4 far fa-heart"
-                    onClick={() => actions.favorite(item.name)}
+                    onClick={() => actions.addFavoriteItem(item.name)}
                     style={{ fontSize: "22px" }}
                   ></i>
                 </div>

@@ -1,3 +1,4 @@
+import { parse } from "query-string";
 import CharacterCards from "../views/CharactersCards";
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -8,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       detailedStarships: {},
       characterscards: [],
       starshipscards: [],
-      favoriteStore: [],
+      favoriteStore: JSON.parse(localStorage.getItem('favoriteStore')) || [],
       storeClicUid: null,
       apiUrl: "https://swapi.tech/api",
     },
@@ -95,19 +96,45 @@ const getState = ({ getStore, getActions, setStore }) => {
           return false;
         }
       },
+
+      loadFavorites: () => {
+				try {
+					const favorites = JSON.parse(localStorage.getItem('favoriteStore')) || [];
+					setStore({ favoriteStore: favorites });
+				} catch (error) {
+					console.error("Error loading favorites from localStorage:", error);
+					setStore({ favoriteStore: [] });
+				}
+			},
       
-      favorite: (favoriteName) => {
+      addFavoriteItem: (itemName) => {
         const store = getStore();
-        if (store.favoriteStore.includes(favoriteName)) {
-          setStore({
-            favoriteStore: store.favoriteStore.filter(
-              (nameCharacter) => nameCharacter !== favoriteName
-            ),
-          });
-        } else {
-          setStore({ favoriteStore: [...store.favoriteStore, favoriteName] });
-        }
+        const updateFavorites = [...store.favoriteStore, itemName];
+        setStore({ favoriteStore: updateFavorites });
+        localStorage.setItem('favoriteStore', JSON.stringify(updateFavorites));
+        console.log(`Item ${itemName} of favorites.`)
       },
+      
+      deleteFavoriteItem: (itemName) => {
+        const store = getStore();
+        const updatedFavorites = store.favoriteStore.filter(fav => fav !== itemName);
+        setStore({ favoriteStore: updatedFavorites });
+        localStorage.setItem('favoriteStore', JSON.stringify(updatedFavorites));
+        console.log(`Item ${itemName} removed from favorites.`)
+      },
+
+      // favorite: (favoriteName) => {
+      //   const store = getStore();
+      //   if (store.favoriteStore.includes(favoriteName)) {
+      //     setStore({
+      //       favoriteStore: store.favoriteStore.filter(
+      //         (nameCharacter) => nameCharacter !== favoriteName
+      //       ),
+      //     });
+      //   } else {
+      //     setStore({ favoriteStore: [...store.favoriteStore, favoriteName] });
+      //   }
+      // },
     },
   };
 };

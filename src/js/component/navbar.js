@@ -5,43 +5,69 @@ import logoStarWars from "../../img/logosw.png";
 import { Context } from "../store/appContext";
 
 export const Navbar = () => {
-    const navigate = useNavigate();
-    const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
+  const { store, actions } = useContext(Context);
 
-
-
-    return (
-        <nav className="navbar navbar-dark sticky-top bg-dark py-3">
-            <div className="container-fluid d-flex">
-                <div className="container-fluid d-flex justify-content-between align-items-center">
-                    <Link to="/">
-                        <img className="logo" src={logoStarWars} alt="Star Wars"/>
-                    </Link>
-                    <div className="dropdown">
-                        <button
+  return (
+    <nav className="navbar navbar-dark sticky-top bg-dark py-3">
+      <div className="container-fluid d-flex">
+        <div className="container-fluid d-flex justify-content-between align-items-center">
+          <Link to="/">
+            <img className="logo" src={logoStarWars} alt="Star Wars" />
+          </Link>
+          <div className="dropdown">
+            <button
+              className="navbarButton btn btn-outline-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Favorites ({store.favoriteStore.length})
+            </button>
+            {/* <button
                             className="navbarButton btn btn-outline-secondary dropdown-toggle"
                             type="button"
                             data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            Favorites ({store.favoriteStore ? store.favoriteStore.length : 0})
-                        </button>
-                        <ul className="dropdown-menu">
-                            {store.favoriteStore && store.favoriteStore.length > 0 ? (
-                                store.favoriteStore.map((item, index) => (
-                                    <li key={index}>
-                                        <a className="dropdown-item dropdownItem">{item}<i className="fas fa-trash-alt"></i></a>
-                                    </li>
-                                ))
-                            ) : (
-                                <li>
-                                    <a className="dropdown-item">Empty</a>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    );
+                            aria-expanded="false">Favorites</button> */}
+            <ul className="dropdown-menu">
+              {store.favoriteStore.length > 0 ? (
+                store.favoriteStore.map((item, index) => (
+                  <li key={index}>
+                    <a className="dropdown-item dropdownItem">
+                      {item}
+                      <i
+                        className="fas fa-trash-alt"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          actions.deleteFavoriteItem(item);
+                        }}
+                      ></i>
+                    </a>
+                  </li>
+                ))
+              ) : (
+                <li>
+                  <a className="dropdown-item">Empty</a>
+                </li>
+              )}
+              {/* {store.favoriteStore && store.favoriteStore.length > 0 ? (
+                store.favoriteStore.map((item, index) => (
+                  <li key={index}>
+                    <a className="dropdown-item dropdownItem">
+                      {item}
+                      <i className="fas fa-trash-alt"></i>
+                    </a>
+                  </li>
+                ))
+              ) : (
+                <li>
+                  <a className="dropdown-item">Empty</a>
+                </li>
+              )} */}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 };
