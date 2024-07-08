@@ -36,6 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               descriptionCharacters[char.uid] = char.description;
             });
             setStore({ characterscards: data.results, detailedCharacters, descriptionCharacters });
+            console.log("Contenido completo del store1:", getStore());
             return true;
           }
           setStore({ characterscards: [], detailedCharacters: {}, descriptionCharacters: {} });

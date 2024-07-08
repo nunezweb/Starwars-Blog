@@ -3,6 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import "../../styles/navbar.css";
 import logoStarWars from "../../img/logosw.png";
 import { Context } from "../store/appContext";
+import Autocomplete from "../component/Autocomplete";
+
+export const Home = () => {
+  const { store, actions } = useContext(Context);
+};
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -15,6 +20,9 @@ export const Navbar = () => {
           <Link to="/">
             <img className="logo" src={logoStarWars} alt="Star Wars" />
           </Link>
+            <div className="d-flex justify-content-center w-100">
+              <Autocomplete />
+            </div>
           <div className="dropdown">
             <button
               className="navbarButton btn btn-outline-secondary dropdown-toggle"
