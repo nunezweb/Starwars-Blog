@@ -5,13 +5,16 @@ import "../../styles/home.css";
 
 const CharacterCards = () => {
   const { store, actions } = useContext(Context);
+  function onImageError(event) {
+    event.target.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+  }
 
   useEffect(() => {
     const startCharacters = () => {
       actions.getCharactersCards();
     };
     startCharacters();
-    }, []);
+  }, []);
 
   return (
     <div className="d-flex overflow-auto">
@@ -19,11 +22,9 @@ const CharacterCards = () => {
         store.characterscards.map((item, index) => {
           const details = store.detailedCharacters[item.uid] || {};
           return (
-            <div
-              key={index}
-              className="card me-3 imgFlex"
-            >
+            <div key={index} className="card me-3 imgFlex">
               <img
+                onError={onImageError}
                 src={`https://starwars-visualguide.com/assets/img/characters/${item.uid}.jpg`}
                 className="card-img-top"
                 alt="Star Wars"
@@ -56,7 +57,9 @@ const CharacterCards = () => {
               <p>loading</p>
               <div className="wordsStarWars">
                 <span className="wordStarWars">May the Force be with you.</span>
-                <span className="wordStarWars">I've got a bad feeling about this</span>
+                <span className="wordStarWars">
+                  I've got a bad feeling about this
+                </span>
                 <span className="wordStarWars">Patience, young padawan.</span>
                 <span className="wordStarWars">It's a trap.</span>
                 <span className="wordStarWars">May the Force be with you</span>

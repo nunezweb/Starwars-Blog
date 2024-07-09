@@ -9,6 +9,10 @@ const CharacterDetails = () => {
   const [characterDescription, setCharacterDescription] = useState(null);
   const [error, setError] = useState(false);
   const params = useParams();
+  function onImageError(event) {
+    event.target.src =
+      "https://starwars-visualguide.com/assets/img/placeholder.jpg";
+  }
 
   useEffect(() => {
     const fetchCharacterDetails = async (uid) => {
@@ -81,6 +85,7 @@ const CharacterDetails = () => {
         <div className="row">
           <div className="col">
             <img
+              onError={onImageError}
               src={`https://starwars-visualguide.com/assets/img/characters/${params.uid}.jpg`}
               className="card-img-top"
               alt="Star Wars"
