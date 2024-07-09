@@ -11,7 +11,7 @@ import CharacterCards from "./views/CharactersCards";
 import CharacterDetails from "./views/CharacterDetails";
 import StarshipDetails from "./views/StarshipDetails";
 import NotFoundPage from "./views/NotFoundPage";
-import NeonCursorEffect from "./component/NeonCursorEffect";
+import AnimatedCursor from "./component/AnimatedCursor";
 
 //create your first component
 const Layout = () => {
@@ -23,7 +23,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
-          <NeonCursorEffect />
+          <AnimatedCursor />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
