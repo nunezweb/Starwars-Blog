@@ -12,6 +12,7 @@ import CharacterDetails from "./views/CharacterDetails";
 import StarshipDetails from "./views/StarshipDetails";
 import NotFoundPage from "./views/NotFoundPage";
 import AnimatedCursor from "./component/AnimatedCursor";
+import BackgroundMusic from "./component/BackgroundMusic";
 
 //create your first component
 const Layout = () => {
@@ -23,6 +24,7 @@ const Layout = () => {
     <div>
       <BrowserRouter basename={basename}>
         <ScrollToTop>
+          <BackgroundMusic />
           <AnimatedCursor />
           <Navbar />
           <Routes>

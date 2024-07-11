@@ -155,7 +155,7 @@ function AnimatedCursor({
 
   const styles = {
     cursor: {
-      zIndex: 9999, // Asegura que el cursor esté siempre por encima de otros elementos
+      zIndex: 9999, 
       position: 'fixed',
       opacity: 1,
       pointerEvents: 'none',
