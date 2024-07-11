@@ -5,19 +5,13 @@ const BackgroundMusic = () => {
   useEffect(() => {
     const BackgroundAudio = new Audio(TheImperialMarch);
     BackgroundAudio.loop = true; 
-
-    const playAudio = () => {
-      BackgroundAudio.play().catch((error) => {
-        console.error("Error playing the audio file:", error);
-      });
-    };
-
-    document.addEventListener('click', playAudio);
+    BackgroundAudio.play().catch((error) => {
+      console.error("Error playing the audio file:", error);
+    });
 
     return () => {
       BackgroundAudio.pause();
-      BackgroundAudio.currentTime = 0;
-      document.removeEventListener('click', playAudio);
+      BackgroundAudio.currentTime = 0; 
     };
   }, []);
 
