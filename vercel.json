@@ -23,7 +23,6 @@
       "src": "/(.*)",
       "headers": { 
         "cache-control": "s-maxage=0",
-        "Feature-Policy": "autoplay 'self'",
         "Permissions-Policy": "autoplay=(self)"
       },
       "dest": "/index.html"
