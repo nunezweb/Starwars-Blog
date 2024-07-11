@@ -10,18 +10,22 @@
   
   "routes": [
     {
-      "src":"/.*bundle.js$",
+      "src": "/.*bundle.js$",
       "headers": { "cache-control": "s-maxage=31536000,immutable" },
-      "dest":"/bundle.js"
+      "dest": "/bundle.js"
     },
     {
-      "src":"/(.+)\\.([a-zA-Z]{2,4})$",
+      "src": "/(.+)\\.([a-zA-Z]{2,4})$",
       "headers": { "cache-control": "s-maxage=31536000,immutable" },
-      "dest":"/$1.$2"
+      "dest": "/$1.$2"
     },
     {
       "src": "/(.*)",
-      "headers": { "cache-control": "s-maxage=0" },
+      "headers": { 
+        "cache-control": "s-maxage=0",
+        "Feature-Policy": "autoplay 'self'",
+        "Permissions-Policy": "autoplay=(self)"
+      },
       "dest": "/index.html"
     }
   ]
